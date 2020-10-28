@@ -1,0 +1,23 @@
+﻿.up {
+    width: 0px;
+    height: 0px;
+    border-style: inset;
+    border-width: 0 20px 34.64px 20px;
+    border-color: transparent transparent #007bff transparent;
+    float: left;
+    transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+}
+
+    .up p {
+        text-align: center;
+        top: 10px;
+        left: -6.7px;
+        position: relative;
+        width: 9.3px;
+        height: 9.3px;
+        margin: 0px;
+    }
