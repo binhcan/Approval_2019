@@ -328,15 +328,15 @@ namespace Approval
                 string sqldailyqty = "update it_note_detail set quantity_daily = 0 where Note_id=" + id;
                 data.ExcuteQuery(sqldailyqty);
 
-                string sql1 = "Select * from it_note_user where id in (select create_by from it_note where id=" + id + " )";
-                DataTable mail = data.GetDataTable(sql1);
-                //string sqlsend = "select * from it_note_user where id=" + use_id;
-                //DataTable mailsend = data.GetDataTable(sqlsend);
-                if (mail.Rows[0]["mail"].ToString() != "")
-                {
-                    SendMail _send = new SendMail("gr.webmaster@meiko-t.com.vn", "Gds@12345", mail.Rows[0]["mail"].ToString(), "Finish vote " + dttmp.Rows[0]["note_no"].ToString(), "Finish vote " + dttmp.Rows[0]["note_no"].ToString());
-                    _send.SendM();
-                }
+                //string sql1 = "Select * from it_note_user where id in (select create_by from it_note where id=" + id + " )";
+                //DataTable mail = data.GetDataTable(sql1);
+                ////string sqlsend = "select * from it_note_user where id=" + use_id;
+                ////DataTable mailsend = data.GetDataTable(sqlsend);
+                //if (mail.Rows[0]["mail"].ToString() != "")
+                //{
+                //    SendMail _send = new SendMail("gr.webmaster@meiko-t.com.vn", "Gds@12345", mail.Rows[0]["mail"].ToString(), "Finish vote " + dttmp.Rows[0]["note_no"].ToString(), "Finish vote " + dttmp.Rows[0]["note_no"].ToString());
+                //    _send.SendM();
+                //}
                 Response.Redirect("Warehouse.aspx");
             }
             

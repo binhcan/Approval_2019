@@ -338,12 +338,12 @@ namespace Approval
             //string sqluse = "select * from it_note_user where id=" + use;
             //DataTable mailuse = data.GetDataTable(sqluse);
             DataTable mail = data.GetDataTable(sql);
-            for (int i = 0; i < mail.Rows.Count; i++)
-            {
-                SendMail _send = new SendMail("gr.webmaster@meiko-t.com.vn", "Gds@12345", mail.Rows[i]["mail"].ToString(), "Vote " + Note_no + " is complete, Please confirm!", "Dear Sir, \nVote " + Note_no + " is complete, Please confirm!");
-                _send.SendM();
+            //for (int i = 0; i < mail.Rows.Count; i++)
+            //{
+            //    SendMail _send = new SendMail("gr.webmaster@meiko-t.com.vn", "Gds@12345", mail.Rows[i]["mail"].ToString(), "Vote " + Note_no + " is complete, Please confirm!", "Dear Sir, \nVote " + Note_no + " is complete, Please confirm!");
+            //    _send.SendM();
 
-            }
+            //}
             Response.Redirect("Manage_Detail.aspx");
         }
 

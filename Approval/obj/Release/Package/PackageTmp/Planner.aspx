@@ -124,7 +124,7 @@
             <asp:ScriptManager ID="ScriptManager1" runat="server">
             </asp:ScriptManager>
             <asp:GridView ID="grvPlanner" runat="server" AllowPaging="True"
-                AutoGenerateColumns="False" PageSize="20" Width="95%" DataKeyNames="id_planner"
+                AutoGenerateColumns="False" PageSize="20" Width="95%" DataKeyNames="id"
                 OnPageIndexChanging="grvLocation_PageIndexChanging"
                 OnRowDataBound="grvLocation_RowDataBound" BackColor="White"
                 CssClass="Grid"
@@ -151,7 +151,7 @@
                         <ControlStyle Width="20px" />
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
-                    <asp:BoundField DataField="ID_planner" HeaderText="ID_Planner" Visible="False" />                   
+                    <asp:BoundField DataField="ID" HeaderText="ID_Planner" Visible="False" />                   
                     <asp:BoundField DataField="Planner" HeaderText="Planner">
                         <ItemStyle HorizontalAlign="Left" />
                     </asp:BoundField>

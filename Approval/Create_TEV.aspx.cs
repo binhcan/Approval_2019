@@ -80,13 +80,13 @@ namespace Approval
             String sql; string no_tmp = CreateNo();
             int partcardstatus = 0;
             //lay location cho vote
-            if (drreason.SelectedIndex == 5 || drreason.SelectedIndex == 6 || drreason.SelectedIndex == 8)
+            if (drreason.SelectedIndex == 5 || drreason.SelectedIndex == 6 || drreason.SelectedIndex == 8 || Convert.ToInt32(drreason.SelectedValue) == 9)
             {
                 string sql1 = "select location from locationMaster where Dept = '" + txtPart.Text.Trim() + "' and warehouse = '" + drwarehouse.SelectedValue + "' and planner = '" + drplaner.SelectedValue + "' and ReasonCode = '" + drreason.SelectedValue + "' ";
                 DataTable tbl1 = data.GetDataTable(sql1);
                 loc = tbl1.Rows[0]["Location"].ToString();
             }
-            else if (Convert.ToInt32(drreason.SelectedValue) == 1 || Convert.ToInt32(drreason.SelectedValue) == 2 || Convert.ToInt32(drreason.SelectedValue) == 3)
+            else if (Convert.ToInt32(drreason.SelectedValue) == 1 || Convert.ToInt32(drreason.SelectedValue) == 2 || Convert.ToInt32(drreason.SelectedValue) == 3 )
             {
                 loc = "Location-RM";
             }

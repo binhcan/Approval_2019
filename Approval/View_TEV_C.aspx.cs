@@ -137,20 +137,20 @@ namespace Approval
 
             //lay thong tin vote de gui mail
 
-            DataTable vote_no = data.GetDataTable("select Note_no from IT_note where id=" + id_);
-            string Note_no = vote_no.Rows[0]["Note_no"].ToString();
+            //DataTable vote_no = data.GetDataTable("select Note_no from IT_note where id=" + id_);
+            //string Note_no = vote_no.Rows[0]["Note_no"].ToString();
 
-            //Ket thuc qua trinh confirm, gui mail toi nguoi duyet
-            string sql = "Select * from it_note_user where parts='" + pat + "' and (permission = '1' or permission = '14') ";
-            //string sqluse = "select * from it_note_user where id=" + use;
-            //DataTable mailuse = data.GetDataTable(sqluse);
-            DataTable mail = data.GetDataTable(sql);
-            for (int i = 0; i < mail.Rows.Count; i++)
-            {
-                SendMail _send = new SendMail("gr.webmaster@meiko-t.com.vn", "Gds@12345", mail.Rows[i]["mail"].ToString(), "Vote " + Note_no + " has been confirmed, Please Approval!", "Dear Sir, \nVote " + Note_no + " has been confirmed, Please Approval!");
-                _send.SendM();
+            ////Ket thuc qua trinh confirm, gui mail toi nguoi duyet
+            //string sql = "Select * from it_note_user where parts='" + pat + "' and (permission = '1' or permission = '14') ";
+            ////string sqluse = "select * from it_note_user where id=" + use;
+            ////DataTable mailuse = data.GetDataTable(sqluse);
+            //DataTable mail = data.GetDataTable(sql);
+            //for (int i = 0; i < mail.Rows.Count; i++)
+            //{
+            //    SendMail _send = new SendMail("gr.webmaster@meiko-t.com.vn", "Gds@12345", mail.Rows[i]["mail"].ToString(), "Vote " + Note_no + " has been confirmed, Please Approval!", "Dear Sir, \nVote " + Note_no + " has been confirmed, Please Approval!");
+            //    _send.SendM();
 
-            }
+            //}
 
             Response.Redirect("Censorship_TEV.aspx");
         }

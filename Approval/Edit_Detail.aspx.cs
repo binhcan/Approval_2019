@@ -155,7 +155,7 @@ namespace Approval
 
                 drreason.SelectedValue = note.Rows[0]["reasoncode"].ToString();
                 drwarehouse.SelectedValue = note.Rows[0]["warehouse"].ToString();
-                drplaner.SelectedValue = note.Rows[0]["planner"].ToString();
+                drplaner.SelectedValue = note.Rows[0]["planner"].ToString().Trim();
                 txtReson_no.Text = note.Rows[0]["reson_no"].ToString();
                 txtPart.Text = note.Rows[0]["part"].ToString();
                 txtJobname.Text = note.Rows[0]["jobname"].ToString();

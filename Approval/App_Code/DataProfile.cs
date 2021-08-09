@@ -9,7 +9,8 @@ namespace Approval
 {
     public class DataProfile
     {
-        string connect = @"Data Source=10.120.110.221;Initial Catalog=Approval_2019;Persist Security Info=True;User ID=sa;Password=towada;MultipleActiveResultSets=True";
+        string connect = @"Data Source=10.120.112.215;Initial Catalog=Approval;Persist Security Info=True;User ID=sa;Password=Mtv@2020;MultipleActiveResultSets=True";
+        //string connect = @"Data Source = .\SQLEXPRESS;Initial Catalog = Approval; Persist Security Info=True;User ID = sa; Password=towada";
         SqlConnection conn = null;
         SqlDataAdapter da = null;
         SqlCommand cmd = null;
