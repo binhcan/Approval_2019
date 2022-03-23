@@ -10,9 +10,9 @@ using System.Drawing;
 
 namespace Approval
 {
-    public partial class History_WH : System.Web.UI.Page
+    public partial class HistoryDetail : System.Web.UI.Page
     {
-        string use_id, pat;
+        string use_id, pat,id;
         DataProfile data = new DataProfile();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,31 +22,24 @@ namespace Approval
             }
             use_id = Session["id"].ToString();
             pat = Session["pat"].ToString();
+            id = Request.QueryString["id"].ToString();
             if (!IsPostBack)
             {
                 //LoadReport();  
-                Load_Org();
+                LoadData();
             }
+
         }
-        public void Load_Org()
-        {
-            DataTable org = data.GetDataTable("select * from warehouse");
-            drOrg.DataSource = org;
-            drOrg.DataTextField = "warehouse";
-            drOrg.DataValueField = "ID_WH";
-            drOrg.DataBind();
-        }
+
         public void LoadData()
         {
-            string[] substrings = reservation.Value.Trim().Split('-');
-            string starttime = substrings[0];
-            string endtime = substrings[1];
-            string sql1 = "select t.id, t.note_no, t.model,t.Jobname,t.reson,b.username as confirm_by,c.username as approval_by from it_note t"
-                          + " left join it_note_user b on b.id =t.confirm_by " +
-                          " left join it_note_user c on c.id =t.appro_by " +
-                          " where t.warehouse='" + drOrg.SelectedValue + "' and t.status!=2  and t.part='" + pat + "' and t.checked = 1 and t.note_date between '" + starttime.Trim() + "' and '" + endtime.Trim() + "'";
-            //string sql1 = "select t.note_no,b.ITEM,b.DESCRIPTION ,b.quantity,b.SEMILOT,b.quantity_act, t.reson,c.Description from it_note t"
-            //             + " left join it_note_detail b on b.note_id=t.id left join IT_RESON_APPROVA c on  c.ID = t.Reasoncode where t.warehouse='" + drOrg.SelectedValue + "' and t.status!=2 and t.checked = 1 and t.note_date between '" + starttime.Trim() + "' and '" + endtime.Trim() + "' ";
+            //string[] substrings = reservation.Value.Trim().Split('-');
+            //string starttime = substrings[0];
+            //string endtime = substrings[1];
+            //string sql1 = "select t.note_no model,b.code as partno,b.name as partname,b.quantity,b.line, t.reson, t.reson_approval from it_note t"
+            //              + " left join it_note_detail b on b.note_id=t.id where t.org='" + drOrg.SelectedValue + "' and t.status!=2  and t.part='" + pat + "' and t.note_date between convert(date,'" + txtFromDate.Text.ToString() + "',105) and convert(date,'" + txtToDate.Text.ToString() + "',105)";
+            string sql1 = "select t.note_no,b.ITEM,b.DESCRIPTION ,b.quantity,b.SEMILOT,b.quantity_act, t.reson,c.Description from it_note t"
+                         + " left join it_note_detail b on b.note_id=t.id left join IT_RESON_APPROVA c on  c.ID = t.Reasoncode where t.id ='" + id + "'  ";
             DataTable dt1 = data.GetDataTable(sql1);
             if (dt1.Rows.Count >= 0)
             {
@@ -54,19 +47,9 @@ namespace Approval
                 grvhistory.DataBind();
             }
         }
-        protected void btnSearch_Click(object sender, EventArgs e)
+        protected void btnEnd_Click(object sender, EventArgs e)
         {
-            LoadData();
-        }
-        int stt = 1;
-
-        protected void grvhistory_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            grvhistory.PageIndex = e.NewPageIndex;
-            int trang_thu = e.NewPageIndex;
-            int so_dong = grvhistory.PageSize;
-            stt = trang_thu * so_dong + 1;
-            LoadData();
+            Response.Redirect("History_WH.aspx");
         }
 
         protected void btnexport_Click(object sender, EventArgs e)
@@ -120,25 +103,15 @@ namespace Approval
         {
             /* Verifies that the control is rendered */
         }
-        protected void btnEnd_Click(object sender, EventArgs e)
+        int stt = 1;
+        protected void grvhistory_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            Response.Redirect("Manage_Detail.aspx");
+            grvhistory.PageIndex = e.NewPageIndex;
+            int trang_thu = e.NewPageIndex;
+            int so_dong = grvhistory.PageSize;
+            stt = trang_thu * so_dong + 1;
+            LoadData();
         }
-
-        protected void bthistorydetail_Click(object sender, EventArgs e)
-        {
-            foreach (GridViewRow row in grvhistory.Rows)
-            {
-                CheckBox chk = (row.FindControl("cbSelectAll") as CheckBox);
-                if (chk.Checked)
-                {
-                    int id = int.Parse(grvhistory.DataKeys[row.RowIndex].Value.ToString());
-                    Response.Redirect("HistoryDetail.aspx?id=" + id);
-                    break;
-                }
-            }
-        }
-
         public string get_stt()
         {
             return Convert.ToString(stt++);
